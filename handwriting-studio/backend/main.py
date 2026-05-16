@@ -12,7 +12,10 @@ app = FastAPI(title="Handwriting Studio API", version="1.0.0")
 
 frontend_origins = [
     origin.strip()
-    for origin in os.getenv("FRONTEND_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",")
+    for origin in os.getenv(
+        "FRONTEND_ORIGINS",
+        "http://localhost:5173,http://127.0.0.1:5173,https://handwriting-tool-lsrucjaxk-guravanakrishna111-techs-projects.vercel.app",
+    ).split(",")
     if origin.strip()
 ]
 
