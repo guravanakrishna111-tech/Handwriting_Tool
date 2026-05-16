@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || "",
+  baseURL: API_BASE_URL,
   timeout: 120000
 });
 
@@ -42,6 +44,5 @@ export async function regeneratePage(payload) {
 }
 
 export function pdfExportUrl(sessionId) {
-  return `/api/export/pdf/${sessionId}`;
+  return `${API_BASE_URL}/api/export/pdf/${sessionId}`;
 }
-
