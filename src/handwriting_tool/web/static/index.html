@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Handwriting Studio</title>
+    <link rel="stylesheet" href="/static/app.css">
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="panel">
+        <div class="brand">
+          <p class="eyebrow">Handwriting Studio</p>
+          <h1>Reference-driven handwritten document generation</h1>
+          <p class="subtle">Chat-style workflow with writer reference upload, realism controls, and multi-page output.</p>
+        </div>
+
+        <label class="control">
+          <span>Reference Handwriting</span>
+          <input id="referenceInput" type="file" accept="image/*">
+        </label>
+        <div id="referencePreview" class="reference-preview is-empty">Upload a handwritten page to extract style.</div>
+
+        <label class="control">
+          <span>Output Format</span>
+          <select id="outputFormat">
+            <option value="pdf">PDF</option>
+            <option value="png">PNG</option>
+          </select>
+        </label>
+
+        <div class="control-grid">
+          <label class="control">
+            <span>Typo Probability</span>
+            <input id="typoProbability" type="range" min="0" max="0.2" step="0.01" value="0.05">
+            <small id="typoValue">0.05</small>
+          </label>
+          <label class="control">
+            <span>Correction Probability</span>
+            <input id="correctionProbability" type="range" min="0" max="1" step="0.05" value="0.9">
+            <small id="correctionValue">0.90</small>
+          </label>
+          <label class="control">
+            <span>Baseline Drift</span>
+            <input id="baselineDrift" type="range" min="0" max="18" step="1" value="8">
+            <small id="baselineValue">8 px</small>
+          </label>
+          <label class="control">
+            <span>Ink Blot Probability</span>
+            <input id="inkBlotProbability" type="range" min="0" max="0.1" step="0.01" value="0.02">
+            <small id="inkValue">0.02</small>
+          </label>
+        </div>
+      </aside>
+
+      <main class="chat">
+        <div class="chat-header">
+          <div>
+            <p class="eyebrow">Session</p>
+            <h2>Document Rewrite Assistant</h2>
+          </div>
+          <button id="clearChat" class="ghost">Clear</button>
+        </div>
+
+        <div id="messages" class="messages">
+          <article class="message assistant">
+            <div class="avatar">H</div>
+            <div class="bubble">
+              <p>Paste or type the document you want rewritten, upload one handwritten reference page, and I’ll generate a human-like handwritten version with controlled imperfections.</p>
+            </div>
+          </article>
+        </div>
+
+        <form id="composer" class="composer">
+          <textarea id="textInput" placeholder="Type or paste the exact text you want rewritten. The system will preserve content and only add configurable handwritten imperfections." rows="8"></textarea>
+          <div class="composer-actions">
+            <p class="subtle">The model rewrites only your provided content. It does not invent new sentences.</p>
+            <button id="generateButton" type="submit">Generate Handwriting</button>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <template id="messageTemplate">
+      <article class="message">
+        <div class="avatar"></div>
+        <div class="bubble"></div>
+      </article>
+    </template>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
+

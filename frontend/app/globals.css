@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-studio: "Fraunces", Georgia, serif;
+  --font-ui: "Inter", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: #211b15;
+  background:
+    linear-gradient(90deg, rgba(127, 160, 199, 0.11) 1px, transparent 1px),
+    linear-gradient(180deg, #efe4cb 0%, #f8f4ea 45%, #eadcc1 100%);
+  background-size: 28px 28px, auto;
+}
+
+.paper-grain {
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.45), transparent 20%),
+    repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(69, 102, 150, 0.16) 31px),
+    linear-gradient(90deg, transparent 0 78px, rgba(185, 63, 63, 0.22) 79px, transparent 82px),
+    linear-gradient(180deg, #fbf6e9, #f4ecd9);
+}
+
+.range {
+  accent-color: #a94734;
+}

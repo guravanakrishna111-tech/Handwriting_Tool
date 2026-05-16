@@ -1,0 +1,72 @@
+seed: 7
+
+style:
+  base_font_size: 48
+  line_height: 96
+  character_spacing_mean: 1.0
+  character_spacing_std: 1.8
+  word_spacing_mean: 12.0
+  word_spacing_std: 4.0
+  baseline_jitter: 6.0
+  stroke_darkness_mean: 0.12
+  stroke_darkness_std: 0.08
+  stroke_width_mean: 2.0
+  stroke_width_std: 0.8
+  tilt_mean_deg: -3.0
+  tilt_std_deg: 4.5
+  page_skew_deg: 0.8
+  line_left_indent_jitter: 10
+
+layout:
+  dpi: 300
+  page_width_px: 2480
+  page_height_px: 3508
+  margin_left_px: 220
+  margin_right_px: 180
+  margin_top_px: 220
+  margin_bottom_px: 220
+  lines_per_page_hint: 28
+  max_chars_per_line_hint: 52
+  background_noise: 0.015
+  paper_preset: ruled
+  margin_discipline: 0.62
+
+imperfections:
+  enabled: true
+  typo_probability: 0.05
+  correction_probability: 0.9
+  uncorrected_error_probability: 0.02
+  crossout_probability: 0.75
+  rewrite_above_probability: 0.45
+  repeated_letter_probability: 0.15
+  missing_letter_probability: 0.2
+  swapped_letter_probability: 0.35
+  punctuation_offset_px: 4
+  line_misalignment_px: 12
+  size_jitter_std: 0.08
+  tilt_jitter_std_deg: 3.0
+  darkness_jitter_std: 0.08
+  line_baseline_drift_px: 8.0
+  ink_blot_probability: 0.02
+  missed_punctuation_probability: 0.0
+  overwritten_letter_probability: 0.03
+  faded_stroke_probability: 0.035
+  fatigue_progression: 0.25
+
+controls:
+  writing_carefulness: 0.62
+  exam_rush: 0.38
+  writer_fatigue: 0.35
+  ink_flow: 0.58
+  letter_consistency: 0.48
+  margin_discipline: 0.62
+  mood_variation: 0.25
+  handedness: right
+  ink_preset: blue_gel
+
+runtime:
+  prefer_handwriting_fonts: true
+  export_intermediate_pngs: false
+  output_format: pdf
+  preserve_exact_text: true
+  enable_ocr_check: false
