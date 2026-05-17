@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 
 from routers import analyze, export, generate
 
@@ -35,6 +37,27 @@ app.include_router(export.router)
 @app.get("/api/health")
 async def health():
     return {"status": "ok"}
+
+
+frontend_dist = Path(
+    os.getenv("FRONTEND_DIST_DIR", Path(__file__).resolve().parents[1] / "frontend" / "dist")
+)
+
+if frontend_dist.exists():
+    assets_dir = frontend_dist / "assets"
+    if assets_dir.exists():
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+
+    @app.get("/", include_in_schema=False)
+    async def serve_frontend_root():
+        return FileResponse(frontend_dist / "index.html")
+
+    @app.get("/{full_path:path}", include_in_schema=False)
+    async def serve_frontend(full_path: str):
+        requested_path = frontend_dist / full_path
+        if requested_path.is_file():
+            return FileResponse(requested_path)
+        return FileResponse(frontend_dist / "index.html")
 
 
 @app.exception_handler(HTTPException)
